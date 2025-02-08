@@ -29,7 +29,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(widget)
 
         # При двойном клике по каталогу или файлу открываем его
-        self.list_box.itemDoubleClicked.connect(self.add_url_dir)
+        self.list_box.itemDoubleClicked.connect(self.select_element)
         # При изменение строки поиска обновляем текущий список файлов и каталогов
         self.line_edit.textChanged.connect(self.line_edit_changed)
 
@@ -37,7 +37,7 @@ class MainWindow(QMainWindow):
         self.list_box.clear()
         self.list_box.addItems(back + os.listdir(self.line_edit.text()))
 
-    def add_url_dir(self, e):
+    def select_element(self, e):
         # Если это каталог, то обновляем строку поиска с этим каталогом (двигаемся вглубь)
         if "." not in e.text():
             self.line_edit.setText(self.line_edit.text() + e.text() + "\\")

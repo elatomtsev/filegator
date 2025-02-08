@@ -35,7 +35,14 @@ class MainWindow(QMainWindow):
 
     def line_edit_changed(self):
         self.list_box.clear()
-        self.list_box.addItems(back + os.listdir(self.line_edit.text()))
+        # Если строка поиска пуста, то выводим список дисков на ПК
+        if self.line_edit.text() == "":
+            # Удаляем слэш из ссылок, чтоб после переход к след. папке небыло двух слэшей
+            list_drives = [drive.strip("\\") for drive in os.listdrives()]
+            self.list_box.addItems(list_drives)
+        # Если в строке поиска что-то есть
+        else:
+            self.list_box.addItems(back + os.listdir(self.line_edit.text()))
 
     def select_element(self, e):
         # Если это каталог, то обновляем строку поиска с этим каталогом (двигаемся вглубь)
@@ -43,7 +50,13 @@ class MainWindow(QMainWindow):
             self.line_edit.setText(self.line_edit.text() + e.text() + "\\")
         # Если это "..", то убираем из строки поиска текущий каталог (возвращаемся назада)
         elif ".." == e.text():
-            self.line_edit.setText("\\".join(self.line_edit.text().split("\\")[:-2]) + "\\")
+            new_url = "\\".join(self.line_edit.text().split("\\")[:-2]) + "\\"
+            # Если юзер находился в корне диска, то выводим список дисков
+            if new_url == "\\":
+                self.line_edit.setText("")
+            # Пользователь не в корне диска
+            else:
+                self.line_edit.setText("\\".join(self.line_edit.text().split("\\")[:-2]) + "\\")
         # Если это файл, то открываем его
         elif "." in e.text():
             os.startfile(self.line_edit.text() + e.text())

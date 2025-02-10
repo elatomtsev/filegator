@@ -72,6 +72,6 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"FileManager", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Filegator", None))
     # retranslateUi
 

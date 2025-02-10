@@ -15,7 +15,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QLineEdit, QListWidget,
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLineEdit, QListWidget,
     QListWidgetItem, QMainWindow, QSizePolicy, QVBoxLayout,
     QWidget)
 
@@ -32,31 +32,37 @@ class Ui_MainWindow(object):
         MainWindow.setSizePolicy(sizePolicy)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.verticalLayout_2 = QVBoxLayout(self.centralwidget)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.frame = QFrame(self.centralwidget)
-        self.frame.setObjectName(u"frame")
-        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_3 = QVBoxLayout(self.frame)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout = QVBoxLayout()
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.line_edit = QLineEdit(self.frame)
-        self.line_edit.setObjectName(u"line_edit")
-        
-        self.verticalLayout.addWidget(self.line_edit)
+        self.horizontalLayout_2 = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.left_layout = QVBoxLayout()
+        self.left_layout.setObjectName(u"left_layout")
+        self.left_line_edit = QLineEdit(self.centralwidget)
+        self.left_line_edit.setObjectName(u"left_line_edit")
 
-        self.list_box = QListWidget(self.frame)
-        self.list_box.setObjectName(u"list_box")
+        self.left_layout.addWidget(self.left_line_edit)
 
-        self.verticalLayout.addWidget(self.list_box)
+        self.left_list_box = QListWidget(self.centralwidget)
+        self.left_list_box.setObjectName(u"left_list_box")
+
+        self.left_layout.addWidget(self.left_list_box)
 
 
-        self.verticalLayout_3.addLayout(self.verticalLayout)
+        self.horizontalLayout_2.addLayout(self.left_layout)
+
+        self.right_layout = QVBoxLayout()
+        self.right_layout.setObjectName(u"right_layout")
+        self.right_line_edit = QLineEdit(self.centralwidget)
+        self.right_line_edit.setObjectName(u"right_line_edit")
+
+        self.right_layout.addWidget(self.right_line_edit)
+
+        self.right_list_box = QListWidget(self.centralwidget)
+        self.right_list_box.setObjectName(u"right_list_box")
+
+        self.right_layout.addWidget(self.right_list_box)
 
 
-        self.verticalLayout_2.addWidget(self.frame)
+        self.horizontalLayout_2.addLayout(self.right_layout)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -68,3 +74,4 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"FileManager", None))
     # retranslateUi
+

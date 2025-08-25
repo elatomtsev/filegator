@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QMainWindow, QLineEdit, QListWidget, QApplication
 from PySide6.QtCore import Qt, QSize
+from PySide6.QtGui import QIcon
 
 import os
 
@@ -36,6 +37,8 @@ class MainWindow(QMainWindow):
             lambda: self.left_line_edit_changed(self.ui.right_line_edit, self.ui.right_list_box)
         )
 
+        self.ui.left_list_box.itemClicked.connect(self.status_upd)
+
     def left_line_edit_changed(self, line_edit: QLineEdit, list_box: QListWidget):
         list_box.clear()
 
@@ -68,9 +71,14 @@ class MainWindow(QMainWindow):
         elif os.path.isfile(line_edit.text() + list_box.currentItem().text()):
             os.startfile(line_edit.text() + list_box.currentItem().text())
 
+    def status_upd(self):
+        # !!!!!!!!!!!Баг при выходе в меню дисков (в текущем файле отображается прошлый диск), можно сделать, чтоб при выходе из папки статусбар обновлялся
+        self.ui.status_bar.showMessage(self.ui.left_line_edit.text() + self.ui.left_list_box.currentItem().text())
+
 
 if __name__ == "__main__":
     app = QApplication([])
+    app.setWindowIcon(QIcon("icon.ico"))
     window = MainWindow()
     window.show()
     app.exec()

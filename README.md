@@ -1,4 +1,4 @@
-# Filegator - программа для удобной работы с файлами. Отечественный аналог TotalCommander, а главное - бесплатный и с открытым кодом.
+# Filegator - программа для удобной работы с файлами.
 <img width="602" height="432" alt="image" src="https://github.com/user-attachments/assets/6ad8cccd-9a50-45bc-b1f2-5ae44034ff19" />
 
 __Этапы:__
